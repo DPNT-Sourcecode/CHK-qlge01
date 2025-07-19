@@ -20,6 +20,12 @@
                 {'F', (2, 1, 'F')}
             };
 
+            Product FreeOfferHelper(Product product, int amount, int freeAmount, char freeSKU) {
+                product.FreeOffer = (amount, freeAmount, freeSKU);
+                return product;
+            }
+
+
             Dictionary<char, Product> products = new Dictionary<char, Product> {
                 ['A'] = new Product('A', 50) { Offers = { (5, 200), (3, 130) } },
                 ['B'] = new Product('B', 30) { Offers = { (2, 45) } },
@@ -27,18 +33,19 @@
                 ['D'] = new Product('D', 15),
                 ['E'] = new Product('E', 40) {
                     FreeOffer = { (2, 1, 'B') },
-                    ['F'] = new Product('F', 10) { Offers = { (5, 200), (3, 130) } },
-                    ['G'] = new Product('G', 20) { Offers = { (5, 200), (3, 130) } },
-                    ['H'] = new Product('H', 10) { Offers = { (5, 200), (3, 130) } },
-                    ['I'] = new Product('I', 35) { Offers = { (5, 200), (3, 130) } },
-                    ['J'] = new Product('J', 60) { Offers = { (5, 200), (3, 130) } },
-                    ['K'] = new Product('K', 80) { Offers = { (5, 200), (3, 130) } },
-                };
+                    ['F'] = new Product('F', 10) {
+                        FreeOffer = { (2, 1, 'F') },
+                        ['G'] = new Product('G', 20) { Offers = { (5, 200), (3, 130) } },
+                        ['H'] = new Product('H', 10) { Offers = { (5, 200), (3, 130) } },
+                        ['I'] = new Product('I', 35) { Offers = { (5, 200), (3, 130) } },
+                        ['J'] = new Product('J', 60) { Offers = { (5, 200), (3, 130) } },
+                        ['K'] = new Product('K', 80) { Offers = { (5, 200), (3, 130) } },
+                    };
 
 
-                Dictionary<char, int> shopping = new Dictionary<char, int>();
+                    Dictionary<char, int> shopping = new Dictionary<char, int>();
 
-                int total = 0;
+                    int total = 0;
 
             foreach (char item in skus) {
 
@@ -92,6 +99,7 @@
         }
     }
 }
+
 
 
 
