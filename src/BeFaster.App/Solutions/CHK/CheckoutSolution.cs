@@ -54,17 +54,21 @@
                     amount = paidAmount;
                 }
 
-                if (offers.TryGetValue(item, out var itemOffer)) {
-                    itemOffer.Sort((a, b) => b.amount.CompareTo(a.amount));
+                if (offers.TryGetValue(item, out var itemOffers)) {
+                    itemOffers.Sort((a, b) => b.amount.CompareTo(a.amount));
+                    foreach (var offer in itemOffers) {
+                        int quantity = offer.amount;
+                        int price = offer.price;
+
+                        int offerQuantity = amount / quantity;
+                        total += offerQuantity * price;
+
+                        amount %= quantity;
+
+                    }
                 }
 
                 if (offers.ContainsKey(item)) {
-                    var (quanity, price) = offers[item];
-                    int offerQuantity = amount / quanity;
-                    int remainder = amount % quanity;
-
-                    total += offerQuantity * price + remainder * prices[item];
-                } else {
                     total += amount * prices[item];
                 }
             }
@@ -73,6 +77,7 @@
         }
     }
 }
+
 
 
 
