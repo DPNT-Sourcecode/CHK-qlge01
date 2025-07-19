@@ -45,6 +45,15 @@
                 char item = typePair.Key;
                 int amount = typePair.Value;
 
+                if (freeOffers.TryGetValue(item, out var freeOffer)) {
+                    int size = freeOffer.amount + freeOffer.freeAmount;
+                    int offerQuantity = amount / size;
+                    int remainder = amount % size;
+
+                    int paidAmount = offerQuantity * freeOffer.amount + Math.Min(remainder, freeOffer.freeAmount);
+                    amount = paidAmount;
+                }
+
                 if (offers.ContainsKey(item)) {
                     var (quanity, price) = offers[item];
                     int offerQuantity = amount / quanity;
@@ -60,5 +69,6 @@
         }
     }
 }
+
 
 
