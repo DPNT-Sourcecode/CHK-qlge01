@@ -12,8 +12,20 @@
                 {'A', (3, 130)},
                 {'B', (2, 45)}
             };
+
+
+            Dictionary<char, int> shopping = new Dictionary<char, int>();
+
+            foreach (char item in skus) {
+                if (!shopping.ContainsKey(item)) {
+                    shopping[item] = 0;
+                }
+
+                shopping[item]++;
+            }
             return -1;
         }
     }
 }
+
 
