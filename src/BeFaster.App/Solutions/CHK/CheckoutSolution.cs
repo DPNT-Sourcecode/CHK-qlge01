@@ -54,6 +54,10 @@
                     amount = paidAmount;
                 }
 
+                if (offers.TryGetValue(item, out var itemOffer)) {
+                    itemOffer.Sort((a, b) => b.amount.CompareTo(a.amount));
+                }
+
                 if (offers.ContainsKey(item)) {
                     var (quanity, price) = offers[item];
                     int offerQuantity = amount / quanity;
@@ -61,7 +65,7 @@
 
                     total += offerQuantity * price + remainder * prices[item];
                 } else {
-                    total += amount * prices[item]; ;
+                    total += amount * prices[item];
                 }
             }
 
@@ -69,6 +73,7 @@
         }
     }
 }
+
 
 
 
