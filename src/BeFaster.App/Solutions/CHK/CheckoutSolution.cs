@@ -24,7 +24,7 @@
             ['P'] = new Product('P', 50) { Offers = { (5, 200) } },
             ['Q'] = new Product('Q', 30) { Offers = { (3, 80) } },
             ['R'] = FreeOfferHelper(new Product('R', 50), 3, 1, 'Q'),
-            ['S'] = new Product('S', 30),
+            ['S'] = new Product('S', 20),
             ['T'] = new Product('T', 20),
             ['U'] = FreeOfferHelper(new Product('U', 40), 3, 1, 'U'),
             ['V'] = new Product('V', 50) { Offers = { (3, 130), (2, 90) } },
@@ -118,3 +118,4 @@
         }
     }
 }
+
