@@ -5,12 +5,18 @@
                 {'A', 50},
                 {'B', 30},
                 {'C', 20},
-                {'D', 15}
+                {'D', 15},
+                {'E', 40}
             };
 
-            Dictionary<char, (int amount, int price)> offers = new Dictionary<char, (int amount, int price)> {
-                {'A', (3, 130)},
-                {'B', (2, 45)}
+            //Dictionary<char, (int amount, int price)> offers = new Dictionary<char, (int amount, int price)> {
+            //    {'A', (3, 130)},
+            //    {'B', (2, 45)}
+            //};
+
+            Dictionary<char, List<(int amount, int price)>> offers = new Dictionary<char, List<(int amount, int price)>> {
+                {'A', new List<(int, int)>{ (5, 200), (3, 130) } },
+                {'B', new List<(int, int)>{ (2, 45)}}
             };
 
 
@@ -50,3 +56,4 @@
         }
     }
 }
+
