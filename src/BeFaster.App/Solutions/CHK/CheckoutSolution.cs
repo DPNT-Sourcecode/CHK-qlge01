@@ -16,7 +16,7 @@
             ['H'] = new Product('H', 10) { Offers = { (10, 80), (5, 45) } },
             ['I'] = new Product('I', 35),
             ['J'] = new Product('J', 60),
-            ['K'] = new Product('K', 80) { Offers = { (2, 150) } },
+            ['K'] = new Product('K', 70) { Offers = { (2, 120) } },
             ['L'] = new Product('L', 90),
             ['M'] = new Product('M', 15),
             ['N'] = FreeOfferHelper(new Product('N', 40), 3, 1, 'M'),
@@ -29,9 +29,9 @@
             ['U'] = FreeOfferHelper(new Product('U', 40), 3, 1, 'U'),
             ['V'] = new Product('V', 50) { Offers = { (3, 130), (2, 90) } },
             ['W'] = new Product('W', 20),
-            ['X'] = new Product('X', 90),
-            ['Y'] = new Product('Y', 10),
-            ['Z'] = new Product('Z', 50),
+            ['X'] = new Product('X', 17),
+            ['Y'] = new Product('Y', 20),
+            ['Z'] = new Product('Z', 21),
         };
 
         List<GroupOffer> groupOffers = new List<GroupOffer> {
@@ -118,4 +118,5 @@
         }
     }
 }
+
 
