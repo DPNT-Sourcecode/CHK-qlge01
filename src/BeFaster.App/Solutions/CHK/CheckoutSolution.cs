@@ -60,7 +60,7 @@
 
             // Group Offers
             foreach (GroupOffer groupOffer in groupOffers) {
-
+                shopping.Where(kv => groupOffer.SKUs.Contains(kv.Key) && kv.Value > 0).SelectMany(kv => Enumerable.Repeat(kv.Key, kv.Value)).ToList();
             }
 
             foreach (var (sku, product) in products) {
@@ -108,6 +108,7 @@
         }
     }
 }
+
 
 
 
