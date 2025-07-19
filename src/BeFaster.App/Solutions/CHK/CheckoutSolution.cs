@@ -4,6 +4,7 @@
             product.FreeOffer = (amount, freeAmount, freeSKU);
             return product;
         }
+
         Dictionary<char, Product> products = new Dictionary<char, Product> {
             ['A'] = new Product('A', 50) { Offers = { (5, 200), (3, 130) } },
             ['B'] = new Product('B', 30) { Offers = { (2, 45) } },
@@ -32,11 +33,16 @@
             ['Y'] = new Product('Y', 10),
             ['Z'] = new Product('Z', 50),
         };
+
+        List<GroupOffer> groupOffers = new List<GroupOffer> {
+            new GroupOffer(new [] {'S', 'T', 'X', 'Y', 'Z'}, 3, 45)
+        };
         public int Checkout(string? skus) {
             Dictionary<char, int> shopping = new Dictionary<char, int>();
 
             int total = 0;
 
+            // Process basket
             foreach (char item in skus) {
 
                 if (!products.ContainsKey(item)) {
@@ -50,7 +56,15 @@
                 shopping[item]++;
             }
 
+            // Calculate offers and price
+
+            // Group Offers
+            foreach (GroupOffer groupOffer in groupOffers) {
+
+            }
+
             foreach (var (sku, product) in products) {
+                // Free Offers
                 if (!product.FreeOffer.HasValue) {
                     continue;
                 }
@@ -71,6 +85,7 @@
                 }
             }
 
+            // Normal Offers and pricing
             foreach (var typePair in shopping) {
                 char item = typePair.Key;
                 int amount = typePair.Value;
@@ -93,6 +108,7 @@
         }
     }
 }
+
 
 
 
