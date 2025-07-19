@@ -31,21 +31,19 @@
                 ['B'] = new Product('B', 30) { Offers = { (2, 45) } },
                 ['C'] = new Product('C', 20),
                 ['D'] = new Product('D', 15),
-                ['E'] = new Product('E', 40) {
-                    FreeOffer = { (2, 1, 'B') },
-                    ['F'] = new Product('F', 10) {
-                        FreeOffer = { (2, 1, 'F') },
-                        ['G'] = new Product('G', 20) { Offers = { (5, 200), (3, 130) } },
-                        ['H'] = new Product('H', 10) { Offers = { (5, 200), (3, 130) } },
-                        ['I'] = new Product('I', 35) { Offers = { (5, 200), (3, 130) } },
-                        ['J'] = new Product('J', 60) { Offers = { (5, 200), (3, 130) } },
-                        ['K'] = new Product('K', 80) { Offers = { (5, 200), (3, 130) } },
-                    };
+                ['E'] = FreeOfferHelper(new Product('E', 40), 2, 1, 'B'),
+                ['F'] = FreeOfferHelper(new Product('F', 10), 2, 1, 'F'),
+                ['G'] = new Product('G', 20),
+                ['H'] = new Product('H', 10) { Offers = { (10, 80), (5, 45) } },
+                ['I'] = new Product('I', 35),
+                ['J'] = new Product('J', 60),
+                ['K'] = new Product('K', 80) { Offers = { (2, 150) } },
+            };
 
 
-                    Dictionary<char, int> shopping = new Dictionary<char, int>();
+            Dictionary<char, int> shopping = new Dictionary<char, int>();
 
-                    int total = 0;
+            int total = 0;
 
             foreach (char item in skus) {
 
@@ -99,6 +97,7 @@
         }
     }
 }
+
 
 
 
