@@ -6,7 +6,8 @@
                 {'B', 30},
                 {'C', 20},
                 {'D', 15},
-                {'E', 40}
+                {'E', 40},
+                {'F', 10}
             };
 
             Dictionary<char, List<(int amount, int price)>> offers = new Dictionary<char, List<(int amount, int price)>> {
@@ -15,7 +16,8 @@
             };
 
             Dictionary<char, (int amount, int freeAmount, char freeItem)> freeOffers = new Dictionary<char, (int amount, int freeAmount, char freeItem)> {
-                {'E', (2, 1, 'B')}
+                {'E', (2, 1, 'B')},
+                {'F', (2, 1, 'F')}
             };
 
 
@@ -66,6 +68,7 @@
         }
     }
 }
+
 
 
 
