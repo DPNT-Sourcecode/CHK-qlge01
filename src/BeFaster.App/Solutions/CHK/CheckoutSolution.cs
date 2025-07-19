@@ -19,6 +19,11 @@
             int total = 0;
 
             foreach (char item in skus) {
+
+                if (!prices.ContainsKey(item)) {
+                    return -1;
+                }
+
                 if (!shopping.ContainsKey(item)) {
                     shopping[item] = 0;
                 }
@@ -36,13 +41,16 @@
                     int remainder = amount % quanity;
 
                     total += offerQuantity * price + remainder * prices[item];
+                } else {
+                    total += amount * prices[item]; ;
                 }
             }
 
-            return -1;
+            return total;
         }
     }
 }
+
 
 
 
