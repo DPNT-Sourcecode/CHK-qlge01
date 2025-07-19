@@ -33,32 +33,13 @@
             ['Z'] = new Product('Z', 50),
         };
         public int Checkout(string? skus) {
-            Dictionary<char, int> prices = new Dictionary<char, int> {
-                {'A', 50},
-                {'B', 30},
-                {'C', 20},
-                {'D', 15},
-                {'E', 40},
-                {'F', 10}
-            };
-
-            Dictionary<char, List<(int amount, int price)>> offers = new Dictionary<char, List<(int amount, int price)>> {
-                {'A', new List<(int, int)>{ (5, 200), (3, 130) } },
-                {'B', new List<(int, int)>{ (2, 45)}}
-            };
-
-            Dictionary<char, (int amount, int freeAmount, char freeItem)> freeOffers = new Dictionary<char, (int amount, int freeAmount, char freeItem)> {
-                {'E', (2, 1, 'B')},
-                {'F', (2, 1, 'F')}
-            };
-
             Dictionary<char, int> shopping = new Dictionary<char, int>();
 
             int total = 0;
 
             foreach (char item in skus) {
 
-                if (!prices.ContainsKey(item)) {
+                if (!products.ContainsKey(item)) {
                     return -1;
                 }
 
@@ -94,15 +75,15 @@
                 char item = typePair.Key;
                 int amount = typePair.Value;
 
-                if (offers.TryGetValue(item, out var itemOffers)) {
-                    itemOffers.Sort((a, b) => b.amount.CompareTo(a.amount));
+                Product product = products[item];
 
-                    foreach (var offer in itemOffers) {
-                        int offerQuantity = amount / offer.amount;
-                        total += offerQuantity * offer.price;
+                var sortedOffers = product.Offers.OrderByDescending(offer => offer.Price);
 
-                        amount %= offer.amount;
-                    }
+                foreach (var offer in itemOffers) {
+                    int offerQuantity = amount / offer.amount;
+                    total += offerQuantity * offer.price;
+
+                    amount %= offer.amount;
                 }
 
                 total += amount * prices[item];
@@ -112,4 +93,5 @@
         }
     }
 }
+
 
