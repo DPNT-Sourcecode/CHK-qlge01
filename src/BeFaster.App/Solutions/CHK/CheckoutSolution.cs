@@ -20,6 +20,10 @@
                 {'F', (2, 1, 'F')}
             };
 
+            Dictionary<char, Product> products = new Dictionary<char, Product> {
+                ['A'] = new Product('A', 50) { Offers = { (5, 200), (3, 130) } }
+            };
+
 
             Dictionary<char, int> shopping = new Dictionary<char, int>();
 
@@ -77,4 +81,5 @@
         }
     }
 }
+
 
