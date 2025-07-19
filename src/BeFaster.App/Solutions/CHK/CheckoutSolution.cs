@@ -60,7 +60,17 @@
 
             // Group Offers
             foreach (GroupOffer groupOffer in groupOffers) {
-                shopping.Where(kv => groupOffer.SKUs.Contains(kv.Key) && kv.Value > 0).SelectMany(kv => Enumerable.Repeat(kv.Key, kv.Value)).ToList();
+                var items = shopping.Where(kv => groupOffer.SKUs.Contains(kv.Key) && kv.Value > 0).SelectMany(kv => Enumerable.Repeat(kv.Key, kv.Value)).ToList();
+
+                items.Sort((a, b) => products[b].Price.CompareTo(products[a].Price));
+
+                int count = items.Count() / groupOffer.RequiredAmount;
+                total += count * groupOffer.Price;
+
+                for (int i = 0; i < count * groupOffer.RequiredAmount; i++) {
+                    char sku = items[i];
+                    shopping[sku]--;
+                }
             }
 
             foreach (var (sku, product) in products) {
@@ -108,6 +118,7 @@
         }
     }
 }
+
 
 
 
