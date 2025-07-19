@@ -14,8 +14,8 @@
                 {'B', new List<(int, int)>{ (2, 45)}}
             };
 
-            Dictionary<char, (int amount, int freeAmount)> freeOffers = new Dictionary<char, (int amount, int freeAmount)> {
-                {'E', (2, 1)}
+            Dictionary<char, (int amount, int freeAmount, int freeItem)> freeOffers = new Dictionary<char, (int amount, int freeAmount, int freeItem)> {
+                {'E', (2, 1, 'B')}
             };
 
 
@@ -72,9 +72,3 @@
         }
     }
 }
-
-
-
-
-
-
