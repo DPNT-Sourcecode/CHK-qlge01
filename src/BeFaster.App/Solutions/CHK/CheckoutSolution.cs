@@ -14,7 +14,7 @@
                 {'B', new List<(int, int)>{ (2, 45)}}
             };
 
-            Dictionary<char, (int amount, int freeAmount, int freeItem)> freeOffers = new Dictionary<char, (int amount, int freeAmount, int freeItem)> {
+            Dictionary<char, (int amount, int freeAmount, char freeItem)> freeOffers = new Dictionary<char, (int amount, int freeAmount, char freeItem)> {
                 {'E', (2, 1, 'B')}
             };
 
@@ -36,18 +36,26 @@
                 shopping[item]++;
             }
 
+            foreach (var (promoItem, (amount, freeAmount, freeItem)) in freeOffers) {
+                if (shopping.TryGetValue(promoItem, out int promoCount) && shopping.TryGetValue(freeItem, out int freeCount){
+
+                }
+            }
+
+            if (freeOffers.TryGetValue(item, out var freeOffer)) {
+                int offerSize = freeOffer.amount + freeOffer.freeAmount;
+                int offerQuantity = amount / offerSize;
+                int remainder = amount % offerSize;
+
+                int paidAmount = offerQuantity * freeOffer.amount + Math.Min(remainder, freeOffer.freeAmount);
+                amount = paidAmount;
+            }
+
             foreach (var typePair in shopping) {
                 char item = typePair.Key;
                 int amount = typePair.Value;
 
-                if (freeOffers.TryGetValue(item, out var freeOffer)) {
-                    int offerSize = freeOffer.amount + freeOffer.freeAmount;
-                    int offerQuantity = amount / offerSize;
-                    int remainder = amount % offerSize;
 
-                    int paidAmount = offerQuantity * freeOffer.amount + Math.Min(remainder, freeOffer.freeAmount);
-                    amount = paidAmount;
-                }
 
                 if (offers.TryGetValue(item, out var itemOffers)) {
                     itemOffers.Sort((a, b) => b.amount.CompareTo(a.amount));
@@ -72,3 +80,4 @@
         }
     }
 }
+
