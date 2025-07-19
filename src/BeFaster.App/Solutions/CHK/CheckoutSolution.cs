@@ -9,11 +9,6 @@
                 {'E', 40}
             };
 
-            //Dictionary<char, (int amount, int price)> offers = new Dictionary<char, (int amount, int price)> {
-            //    {'A', (3, 130)},
-            //    {'B', (2, 45)}
-            //};
-
             Dictionary<char, List<(int amount, int price)>> offers = new Dictionary<char, List<(int amount, int price)>> {
                 {'A', new List<(int, int)>{ (5, 200), (3, 130) } },
                 {'B', new List<(int, int)>{ (2, 45)}}
@@ -46,9 +41,9 @@
                 int amount = typePair.Value;
 
                 if (freeOffers.TryGetValue(item, out var freeOffer)) {
-                    int size = freeOffer.amount + freeOffer.freeAmount;
-                    int offerQuantity = amount / size;
-                    int remainder = amount % size;
+                    int offerSize = freeOffer.amount + freeOffer.freeAmount;
+                    int offerQuantity = amount / offerSize;
+                    int remainder = amount % offerSize;
 
                     int paidAmount = offerQuantity * freeOffer.amount + Math.Min(remainder, freeOffer.freeAmount);
                     amount = paidAmount;
@@ -77,6 +72,7 @@
         }
     }
 }
+
 
 
 

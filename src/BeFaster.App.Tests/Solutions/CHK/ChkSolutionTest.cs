@@ -1,13 +1,12 @@
-using BeFaster.App.Solutions.TST;
-using NUnit.Framework;
+using BeFaster.App.Solutions.CHK;
 
-namespace BeFaster.App.Tests.Solutions.TST
-{
-    public class OneTest {
-    
-        [Test]
-        public void RunApply() {
-            Assert.That(One.apply(), Is.EqualTo(1));
+namespace BeFaster.App.Tests.Solutions.CHK {
+    [TestFixture]
+    public class ChkSolutionTest {
+        [TestCase("E", ExpectedResult = 40)]
+        public int ComputeCheckout(string skus) {
+            return new CheckoutSolution().Checkout(skus);
         }
     }
 }
+
