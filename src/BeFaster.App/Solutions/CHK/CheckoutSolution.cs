@@ -37,8 +37,9 @@
             }
 
             foreach (var (promoItem, (amount, freeAmount, freeItem)) in freeOffers) {
-                if (shopping.TryGetValue(promoItem, out int promoCount) && shopping.TryGetValue(freeItem, out int freeCount){
-
+                if (shopping.TryGetValue(promoItem, out int promoCount) && shopping.TryGetValue(freeItem, out int freeCount)) {
+                    int totalFree = promoCount / amount;
+                    shopping[freeItem] = Math.Max(0, freeCount - totalFree * freeAmount);
                 }
             }
 
@@ -80,4 +81,5 @@
         }
     }
 }
+
 
