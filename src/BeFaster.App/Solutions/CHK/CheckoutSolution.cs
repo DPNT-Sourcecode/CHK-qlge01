@@ -79,19 +79,20 @@
 
                 var sortedOffers = product.Offers.OrderByDescending(offer => offer.Price);
 
-                foreach (var offer in itemOffers) {
-                    int offerQuantity = amount / offer.amount;
-                    total += offerQuantity * offer.price;
+                foreach (var (offerAmount, offerPrice) in sortedOffers) {
+                    int offerQuantity = amount / offerAmount;
+                    total += offerQuantity * offerPrice;
 
-                    amount %= offer.amount;
+                    amount %= offerAmount;
                 }
 
-                total += amount * prices[item];
+                total += amount * product.Price;
             }
 
             return total;
         }
     }
 }
+
 
 
